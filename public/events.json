@@ -1,0 +1,70 @@
+[
+  {
+    "date": "2020-02-29",
+    "events": [
+      {
+        "name": "Event Name1",
+        "body": "Event body1",
+        "time": "12:00",
+        "isIn": false
+      },
+      {
+        "name": "Event Name2",
+        "body": "Event body2",
+        "time": "16:30",
+        "isIn": true
+      }
+    ]
+  },
+  {
+    "date": "2020-03-02",
+    "events": [
+      {
+        "name": "Event Name3",
+        "body": "Event body3",
+        "time": "19:00",
+        "isIn": true
+      },
+      {
+        "name": "Event Name4",
+        "body": "Event body4",
+        "time": "22:30",
+        "isIn": true
+      }
+    ]
+  },
+  {
+    "date": "2020-03-04",
+    "events": [
+      {
+        "name": "Event Name5",
+        "body": "Event body5",
+        "time": "04:00",
+        "isIn": false
+      },
+      {
+        "name": "Event Name6",
+        "body": "Event body6",
+        "time": "6:30",
+        "isIn": false
+      }
+    ]
+  },
+  {
+    "date": "2020-03-08",
+    "events": [
+      {
+        "name": "Event Name7",
+        "body": "Event body7",
+        "time": "15:00",
+        "isIn": true
+      },
+      {
+        "name": "Event Name8",
+        "body": "Event body8",
+        "time": "15:30",
+        "isIn": false
+      }
+    ]
+  }
+]

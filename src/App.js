@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import { loadJson } from './utils/loadJson';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+  constructor (props, context) {
+    super(props, context);
+    this.state = {
+      events: new Map(),
+      error: null,
+    };
+  }
+
+  loadEvents = () => {
+
+    const eventsMap = new Map();
+
+    loadJson('./events.json')
+      .then(datesAndEventsList => {
+        datesAndEventsList.forEach(dateAndEvents => {
+          eventsMap.set(dateAndEvents.date, dateAndEvents.events);
+        });
+        this.setState({
+                        events: eventsMap
+                      });
+      })
+      .catch(err => {
+        this.setState({
+                        error: err,
+                      });
+      });
+  };
+
+  componentDidMount () {
+    this.loadEvents();
+  }
+
+  render () {
+    return null;
+  }
 }
 
 export default App;
