@@ -11,12 +11,12 @@
 }
 
 .selected {
-  background-color: mainStyles.$blue-main-color;
+  background-color: $blue-main-color;
   color: white;
 }
 
 .currentDay {
-  color: mainStyles.$orange-main-color;
+  color: $orange-main-color;
 }
 
 .eventList {
@@ -34,5 +34,5 @@
 }
 
 .inEvent {
-  background-color: mainStyles.$green-main-color !important;
+  background-color: $green-main-color !important;
 }

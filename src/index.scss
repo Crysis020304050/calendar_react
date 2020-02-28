@@ -1,4 +1,4 @@
-@import'./styles/modules/mainStyles';
+@import './src/styles/modules/mainStyles';
 
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0-modified | 20110126
@@ -373,7 +373,7 @@ textarea {
 
 body {
   font-family: Montserrat, sans-serif;
-  color: mainStyles.$blue-main-color;;
+  color: $blue-main-color;
   font-size: 16px;
   font-weight: 400;
 }

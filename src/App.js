@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import styles from './App.module.scss';
 import {loadJson} from './utils/loadJson';
-import {calendarModes} from "./constants";
 import Calendar from "./components/Calendar";
-import CalendarNav from "./components/CalendarNav";
+import moment from "moment";
+import {calendarModes} from "./constants";
 
 
 class App extends Component {
@@ -12,7 +12,8 @@ class App extends Component {
         this.state = {
             events: null,
             error: null,
-            mode: calendarModes.MONTH
+            isFetching: true,
+            mode: calendarModes.MONTH,
         };
     }
 
@@ -21,15 +22,17 @@ class App extends Component {
         loadJson('./events.json')
             .then(datesAndEventsList => {
                 datesAndEventsList.forEach(dateAndEvents => {
-                    eventsMap.set(dateAndEvents.date, dateAndEvents.events);
+                    eventsMap.set(moment(dateAndEvents.date).format('DD.MM.YYYY'), dateAndEvents.events);
                 });
                 this.setState({
-                    events: eventsMap
+                    events: eventsMap,
+                    isFetching: false,
                 });
             })
             .catch(err => {
                 this.setState({
                     error: err,
+                    isFetching: false,
                 });
             });
     };
@@ -45,10 +48,12 @@ class App extends Component {
     }
 
     render() {
+        const {isFetching, error} = this.state;
         return (
             <div className={styles.container}>
-                <CalendarNav mode={this.state.mode} changeMode={this.changeMode}/>
-                <Calendar mode={this.state.mode} events={this.state.events}/>
+                {
+                    !isFetching && !error && <Calendar mode={this.state.mode} events={this.state.events} changeMode={this.changeMode}/>
+                }
             </div>
         );
     }

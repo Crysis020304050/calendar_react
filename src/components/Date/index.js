@@ -12,12 +12,15 @@ const EventItem = props => {
 class Date extends Component {
 
   renderEvents = (events) => {
-    return events.map((event, index) => {
-      if (index < 2) {
-        return <EventItem event={event}/>;
-      }
-      return null;
-    });
+    if (events) {
+      return events.map((event, index) => {
+        if (index < 2) {
+          return <EventItem event={event}/>;
+        }
+        return null;
+      });
+    }
+    return null;
   };
 
   onDateClick = (e) => {

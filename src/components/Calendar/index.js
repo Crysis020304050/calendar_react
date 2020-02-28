@@ -6,12 +6,13 @@ import Date from '../Date';
 class Calendar extends Component {
   constructor (props) {
     super (props);
-    const {mode, events} = this.props;
+    const {events, mode} = this.props;
     this.state = {
+      mode: mode,
       today: moment(),
       firstDate: moment().startOf(mode),
       lastDate: moment().endOf(mode),
-      events: events.get(moment()),
+      events: events.get(moment().format('DD.MM.YYYY')),
       selectedDay: moment(),
     }
   }
@@ -31,5 +32,7 @@ class Calendar extends Component {
     return <Date date={moment()} events={events} selectDay={this.selectDay} selectedDay={selectedDay} today={today}/>;
   }
 }
+
+
 
 export default Calendar;
