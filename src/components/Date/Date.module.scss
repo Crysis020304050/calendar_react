@@ -20,6 +20,7 @@
 }
 
 .eventList {
+  padding-top: 2px;
   width: 24px;
   display: flex;
   justify-content: space-evenly;
@@ -31,6 +32,7 @@
   border-radius: 2px;
   flex-grow: 1;
   background-color: #BAD1CD;
+  margin: 0 1px;
 }
 
 .inEvent {

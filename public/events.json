@@ -1,5 +1,34 @@
 [
   {
+    "date": "2020-02-28",
+    "events": [
+      {
+        "name": "Event Name0",
+        "body": "Event body0",
+        "time": "10:00",
+        "isIn": false
+      },
+      {
+        "name": "Event Name2",
+        "body": "Event body2",
+        "time": "11:30",
+        "isIn": true
+      },
+      {
+        "name": "Event Name2",
+        "body": "Event body2",
+        "time": "11:30",
+        "isIn": true
+      },
+      {
+        "name": "Event Name2",
+        "body": "Event body2",
+        "time": "11:30",
+        "isIn": true
+      }
+    ]
+  },
+  {
     "date": "2020-02-29",
     "events": [
       {
@@ -7,11 +36,39 @@
         "body": "Event body1",
         "time": "12:00",
         "isIn": false
+      }
+    ]
+  },
+  {
+    "date": "2020-02-30",
+    "events": [
+      {
+        "name": "Event Name3",
+        "body": "Event body3",
+        "time": "19:00",
+        "isIn": true
       },
       {
-        "name": "Event Name2",
-        "body": "Event body2",
-        "time": "16:30",
+        "name": "Event Name4",
+        "body": "Event body4",
+        "time": "22:30",
+        "isIn": true
+      }
+    ]
+  },
+  {
+    "date": "2020-03-01",
+    "events": [
+      {
+        "name": "Event Name3",
+        "body": "Event body3",
+        "time": "19:00",
+        "isIn": true
+      },
+      {
+        "name": "Event Name4",
+        "body": "Event body4",
+        "time": "22:30",
         "isIn": true
       }
     ]
@@ -23,6 +80,12 @@
         "name": "Event Name3",
         "body": "Event body3",
         "time": "19:00",
+        "isIn": true
+      },
+      {
+        "name": "Event Name4",
+        "body": "Event body4",
+        "time": "22:30",
         "isIn": true
       },
       {
