@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import styles from './App.module.css';
+import styles from './App.module.scss';
 import {loadJson} from './utils/loadJson';
 import {calendarModes} from "./constants";
 import Calendar from "./components/Calendar";

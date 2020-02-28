@@ -1,3 +1,5 @@
+@import'./styles/modules/mainStyles';
+
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0-modified | 20110126
    License: none (public domain)
@@ -370,13 +372,8 @@ textarea {
 }
 
 body {
-  --blue-main-color: #0C3156;
-  --green-main-color: #5EB8B7;
-  --orange-main-color: #F06543;
-  --blue-main-color-opacity: rgba(11, 49, 87, 0.1);
-
   font-family: Montserrat, sans-serif;
-  color: var(--blue-main-color);;
+  color: mainStyles.$blue-main-color;;
   font-size: 16px;
   font-weight: 400;
 }
