@@ -6,14 +6,15 @@ import moment from 'moment';
 
 const EventItem = props => {
   const { event: { isIn }, date, today } = props;
-  return <li className={classNames(styles.event, { [styles.inEvent]: isIn && date.isSameOrAfter(today.format('MM-DD-YYYY'))})}/>;
+  return <li className={classNames(styles.event, { [styles.inEvent]: isIn && date.isSameOrAfter(today)})}/>;
 };
 
 class Date extends Component {
 
   renderEvents = (events, date, today) => {
-    if (events) {
-      return events.map((event, index) => {
+    const dayEvents = events.get(date.format('DD.MM.YYYY'));
+    if (dayEvents) {
+      return dayEvents.map((event, index) => {
         if (index < 3) {
           return <EventItem event={event} date={date} today={today}/>;
         }
@@ -30,15 +31,17 @@ class Date extends Component {
   };
 
   render () {
-    const { selectedDay, events, today, date } = this.props;
+    const { selectedDay, events, today, date, firstDate, lastDate } = this.props;
     return (
-      <div onClick={this.onDateClick} className={classNames(styles.container,
-                                 { [styles.selected]: selectedDay.isSame(date, "date") })}>
+      <td onClick={this.onDateClick} className={classNames(styles.container,
+                                 { [styles.selected]: selectedDay.isSame(date, "date") },
+          {[styles.dayNotInThisMonth]: date.isBefore(firstDate, "date") || date.isAfter(lastDate, "date")}
+          )}>
         <h5 className={classNames({[styles.currentDay]: today.isSame(date, "date")})}>{date.format('D')}</h5>
         <ul className={classNames(styles.eventList)}>
           {this.renderEvents(events, date, today)}
         </ul>
-      </div>
+      </td>
     );
   }
 }
@@ -46,13 +49,15 @@ class Date extends Component {
 export default Date;
 
 Date.propTypes = {
+  firstDate: PropTypes.instanceOf(moment).isRequired,
+  lastDate: PropTypes.instanceOf(moment).isRequired,
   date: PropTypes.instanceOf(moment).isRequired,
   today: PropTypes.instanceOf(moment).isRequired,
   selectedDay: PropTypes.instanceOf(moment).isRequired,
   selectDay: PropTypes.func.isRequired,
-  events: PropTypes.array.isRequired,
+  events: PropTypes.instanceOf(Map),
 };
 
 EventItem.propTypes = {
-  event: PropTypes.object,
+  event: PropTypes.object.isRequired,
 };

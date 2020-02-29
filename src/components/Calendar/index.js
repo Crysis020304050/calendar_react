@@ -1,18 +1,18 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import moment from "moment";
-import Date from '../Date';
+import CalendarBody from "../CalendarBody";
+import CalendarNav from "../CalendarNav";
+import PropTypes from 'prop-types';
 
 
 class Calendar extends Component {
   constructor (props) {
     super (props);
-    const {events, mode} = this.props;
+    const {mode} = this.props;
     this.state = {
-      mode: mode,
       today: moment(),
       firstDate: moment().startOf(mode),
       lastDate: moment().endOf(mode),
-      events: events.get(moment().format('DD.MM.YYYY')),
       selectedDay: moment(),
     }
   }
@@ -23,15 +23,24 @@ class Calendar extends Component {
                   })
   };
 
-  renderDate = date => {
-
-  };
-
   render() {
-    const {today, events, selectedDay} = this.state;
-    return <Date date={moment()} events={events} selectDay={this.selectDay} selectedDay={selectedDay} today={today}/>;
+    const {today, selectedDay, firstDate, lastDate} = this.state;
+    const {mode, events, changeMode} = this.props;
+    return (
+        <Fragment>
+        <CalendarNav mode={mode} changeMode={changeMode} firstDate={firstDate} lastDate={lastDate}/>
+        <CalendarBody events={events} selectDay={this.selectDay} selectedDay={selectedDay} today={today} firstDate={firstDate} lastDate={lastDate}/>
+        </Fragment>
+        );
   }
+
 }
+
+Calendar.propTypes = {
+    events: PropTypes.instanceOf(Map),
+    mode: PropTypes.string.isRequired,
+    changeMode: PropTypes.func.isRequired,
+};
 
 
 

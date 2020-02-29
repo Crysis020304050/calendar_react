@@ -327,6 +327,32 @@ table {
   border-spacing: 0;
 }
 
+table,
+thead,
+tbody,
+tfoot,
+tr,
+th,
+td {
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border-collapse: inherit;
+  border-spacing: 0;
+  border: none inherit;
+  vertical-align: inherit;
+  text-align: center;
+  font-weight: inherit;
+  -webkit-border-horizontal-spacing: 0;
+  -webkit-border-vertical-spacing: 0;
+}
+
+tr {
+  display: flex;
+}
+
+
 html,
 button,
 input,
