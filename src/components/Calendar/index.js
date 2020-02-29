@@ -23,12 +23,19 @@ class Calendar extends Component {
                   })
   };
 
+  changeFirstDateAndLastDate = (firstDate, lastDate) => {
+      this.setState({
+         firstDate: firstDate,
+         lastDate: lastDate,
+      });
+  };
+
   render() {
     const {today, selectedDay, firstDate, lastDate} = this.state;
     const {mode, events, changeMode} = this.props;
     return (
         <Fragment>
-        <CalendarNav mode={mode} changeMode={changeMode} firstDate={firstDate} lastDate={lastDate}/>
+        <CalendarNav mode={mode} changeMode={changeMode} firstDate={firstDate} lastDate={lastDate} changeFirstDateAndLastDate={this.changeFirstDateAndLastDate}/>
         <CalendarBody events={events} selectDay={this.selectDay} selectedDay={selectedDay} today={today} firstDate={firstDate} lastDate={lastDate}/>
         </Fragment>
         );

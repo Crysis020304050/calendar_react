@@ -30,8 +30,8 @@ class CalendarBody extends Component {
             )
         }
         while (lastDate.isSameOrAfter(startDay, 'date'));
-        return weeks.map(week => {
-            return <Week firstDate={firstDate} lastDate={lastDate} selectDay={selectDay} selectedDay={selectedDay} today={today} week={week} events={events}/>
+        return weeks.map((week, index) => {
+            return <Week key={index} firstDate={firstDate} lastDate={lastDate} selectDay={selectDay} selectedDay={selectedDay} today={today} week={week} events={events}/>
         });
     };
 

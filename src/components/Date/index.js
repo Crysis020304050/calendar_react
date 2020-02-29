@@ -16,7 +16,7 @@ class Date extends Component {
     if (dayEvents) {
       return dayEvents.map((event, index) => {
         if (index < 3) {
-          return <EventItem event={event} date={date} today={today}/>;
+          return <EventItem key={index} event={event} date={date} today={today}/>;
         }
         return null;
       });
