@@ -23,7 +23,7 @@ class CalendarBody extends Component {
     renderBody = () => {
         const {firstDate, lastDate, today, events, selectDay, selectedDay} = this.props;
         const weeks = [];
-        const startDay = firstDate.clone().day(1);
+        const startDay = firstDate.clone().day(-1);
         do {
             weeks.push(
                 Array(7).fill(0).map(() => startDay.add(1, 'day').clone())
