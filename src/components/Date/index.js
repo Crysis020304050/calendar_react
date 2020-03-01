@@ -32,7 +32,6 @@ class Date extends Component {
 
   render () {
     const { selectedDay, events, today, date, firstDate, lastDate } = this.props;
-    console.log(lastDate);
     return (
       <td onClick={this.onDateClick} className={classNames(styles.container,
                                  { [styles.selected]: selectedDay.isSame(date, "date") },

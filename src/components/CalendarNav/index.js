@@ -3,6 +3,7 @@ import moment from "moment";
 import PropTypes from 'prop-types';
 import {calendarModes} from "../../constants";
 import PrevOrNextCalendarButton from "../PrevOrNextCalendarButton";
+import styles from './CalendarNav.module.scss';
 
 
 class CalendarNav extends Component {
@@ -12,7 +13,12 @@ class CalendarNav extends Component {
 
   render() {
     const {mode, firstDate, lastDate, changeFirstDateAndLastDate} = this.props;
-    return <PrevOrNextCalendarButton mode={mode} firstDate={firstDate} lastDate={lastDate} changeFirstDateAndLastDate={changeFirstDateAndLastDate}/>;
+    return (
+        <div className={styles.container}>
+          <PrevOrNextCalendarButton mode={mode} firstDate={firstDate} changeFirstDateAndLastDate={changeFirstDateAndLastDate}/>
+          <PrevOrNextCalendarButton isNext={true} mode={mode} firstDate={firstDate} changeFirstDateAndLastDate={changeFirstDateAndLastDate}/>
+        </div>
+    )
   }
 }
 
