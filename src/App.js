@@ -15,7 +15,6 @@ class App extends Component {
             isFetching: true,
             mode: calendarModes.MONTH,
         };
-        console.log(this.state.mode)
     }
 
     loadEvents = () => {

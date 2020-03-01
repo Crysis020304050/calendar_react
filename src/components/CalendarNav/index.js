@@ -14,12 +14,27 @@ class CalendarNav extends Component {
         this.state = {
             isMenuOpen: false,
         };
+        this.toggleContainer = React.createRef();
+    }
+
+    componentDidMount() {
+        window.addEventListener('click', this.onClickOutsideHandler);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('click', this.onClickOutsideHandler);
     }
 
     toggleMenu = () => {
         this.setState({
             isMenuOpen: !this.state.isMenuOpen,
         })
+    };
+
+    onClickOutsideHandler = e => {
+        if (this.state.isMenuOpen  && !this.toggleContainer.current.contains(e.target)) {
+            this.setState({ isMenuOpen: false });
+        }
     };
 
     onButtonClick = (newMode) => {
@@ -33,21 +48,26 @@ class CalendarNav extends Component {
 
     renderCentralNavSign = () => {
         const {firstDate, lastDate, mode} = this.props;
+        const {isMenuOpen} = this.state;
         const sign = mode === calendarModes.MONTH ? firstDate.clone().format('MMM') : `${firstDate.clone().format('MMMM')} ${firstDate.clone().format('D')}-${lastDate.clone().format('D')}`;
-        return sign;
+        return (
+            <div className={styles.centralSign} onClick={this.toggleMenu} ref={this.toggleContainer}>
+                <div className={styles.currentItem}>{sign}</div>
+                <Icon size={'24px'} path={mdiChevronDown} color={'white'} rotate={isMenuOpen ? 180 : 0}/>
+            </div>
+        );
     };
 
     render() {
-        const {mode, firstDate, lastDate, changeFirstDateAndLastDate} = this.props;
+        const {mode, firstDate, changeFirstDateAndLastDate} = this.props;
         const {isMenuOpen} = this.state;
         return (
             <div className={styles.container}>
                 <nav className={styles.navContainer}>
                     <PrevOrNextCalendarButton mode={mode} firstDate={firstDate} changeFirstDateAndLastDate={changeFirstDateAndLastDate}/>
-                    <div className={styles.centralSign} onClick={this.toggleMenu}>
-                        <div className={styles.currentItem}>{this.renderCentralNavSign()}</div>
-                        <Icon size={'24px'} path={mdiChevronDown} color={'white'} rotate={isMenuOpen ? 180 : 0}/>
-                    </div>
+                    {
+                        this.renderCentralNavSign()
+                    }
                     <PrevOrNextCalendarButton isNext={true} mode={mode} firstDate={firstDate} changeFirstDateAndLastDate={changeFirstDateAndLastDate}/>
                 </nav>
                 {
