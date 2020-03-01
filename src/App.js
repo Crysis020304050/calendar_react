@@ -15,6 +15,7 @@ class App extends Component {
             isFetching: true,
             mode: calendarModes.MONTH,
         };
+        console.log(this.state.mode)
     }
 
     loadEvents = () => {
@@ -40,7 +41,7 @@ class App extends Component {
     changeMode = mode => {
         this.setState({
             mode: mode,
-        })
+        });
     };
 
     componentDidMount() {

@@ -9,10 +9,10 @@ function PrevOrNextCalendarButton(props) {
     const {isNext, mode, firstDate, changeFirstDateAndLastDate} = props;
     let buttonSign;
     if (isNext) {
-        buttonSign = calendarModes.MONTH === mode ? firstDate.clone().add(1, calendarModes.MONTH).format('MMM') : 'NEXT';
+        buttonSign = calendarModes.MONTH === mode ? firstDate.clone().add(1, calendarModes.MONTH).format('MMM') : 'next';
     }
     else {
-        buttonSign = calendarModes.MONTH === mode ? firstDate.clone().subtract(1, calendarModes.MONTH).format('MMM') : 'PREV';
+        buttonSign = calendarModes.MONTH === mode ? firstDate.clone().subtract(1, calendarModes.MONTH).format('MMM') : 'prev';
     }
 
     const onCLick = () => {
