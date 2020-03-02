@@ -9,7 +9,11 @@ import {mdiChevronDown} from '@mdi/js';
 
 const CentralNavSign = props => {
     const {firstDate, lastDate, mode, isMenuOpen, toggleContainer, toggleMenu} = props;
-    const sign = mode === calendarModes.MONTH ? firstDate.clone().format('MMM') : `${firstDate.clone().format('MMMM')} ${firstDate.clone().format('D')}-${lastDate.clone().format('D')}`;
+
+    const sign = mode === calendarModes.MONTH ?
+        firstDate.clone().format('MMM') :
+        `${firstDate.clone().format('MMMM')} ${firstDate.clone().format('D')}-${lastDate.clone().format('D')}`;
+
     return (
         <div className={styles.centralSign} onClick={toggleMenu} ref={toggleContainer}>
             <div className={styles.currentItem}>{sign}</div>
@@ -42,8 +46,8 @@ class CalendarNav extends Component {
     };
 
     onClickOutsideHandler = e => {
-        if (this.state.isMenuOpen  && !this.toggleContainer.current.contains(e.target)) {
-            this.setState({ isMenuOpen: false });
+        if (this.state.isMenuOpen && !this.toggleContainer.current.contains(e.target)) {
+            this.setState({isMenuOpen: false});
         }
     };
 
@@ -62,15 +66,18 @@ class CalendarNav extends Component {
         return (
             <div className={styles.container}>
                 <nav className={styles.navContainer}>
-                    <PrevOrNextCalendarButton mode={mode} firstDate={firstDate} changeFirstDateAndLastDate={changeFirstDateAndLastDate}/>
-                    <CentralNavSign toggleMenu={this.toggleMenu} isMenuOpen={isMenuOpen} firstDate={firstDate} lastDate={lastDate} mode={mode} toggleContainer={this.toggleContainer}/>
-                    <PrevOrNextCalendarButton isNext={true} mode={mode} firstDate={firstDate} changeFirstDateAndLastDate={changeFirstDateAndLastDate}/>
+                    <PrevOrNextCalendarButton mode={mode} firstDate={firstDate}
+                                              changeFirstDateAndLastDate={changeFirstDateAndLastDate}/>
+                    <CentralNavSign toggleMenu={this.toggleMenu} isMenuOpen={isMenuOpen} firstDate={firstDate}
+                                    lastDate={lastDate} mode={mode} toggleContainer={this.toggleContainer}/>
+                    <PrevOrNextCalendarButton isNext={true} mode={mode} firstDate={firstDate}
+                                              changeFirstDateAndLastDate={changeFirstDateAndLastDate}/>
                 </nav>
                 {
                     isMenuOpen && (
                         <div className={styles.downMenu}>
-                            <div onClick={e => this.onButtonClick(calendarModes.WEEK)}>This week</div>
-                            <div onClick={e => this.onButtonClick(calendarModes.MONTH)}>This month</div>
+                            <div onClick={() => this.onButtonClick(calendarModes.WEEK)}>This week</div>
+                            <div onClick={() => this.onButtonClick(calendarModes.MONTH)}>This month</div>
                         </div>
                     )
                 }

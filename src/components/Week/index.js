@@ -1,24 +1,21 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Date from '../Date';
 import PropTypes from 'prop-types';
 import moment from "moment";
 
-class Week extends Component {
-
-    weekRender = () => {
-        const {week, firstDate, lastDate, today, events, selectDay, selectedDay} = this.props;
+function Week(props) {
+    const weekRender = () => {
+        const {week, firstDate, lastDate, today, events, selectDay, selectedDay} = props;
         return week.map((day, index) => {
-           return <Date key={index} firstDate={firstDate} lastDate={lastDate} date={day} today={today} selectedDay={selectedDay} selectDay={selectDay} events={events}/>
+            return <Date key={index} firstDate={firstDate} lastDate={lastDate} date={day} today={today}
+                         selectedDay={selectedDay} selectDay={selectDay} events={events}/>
         });
     };
 
-    render() {
-        return (<tr>
-                {this.weekRender()}
-            </tr>
-        );
-    }
-
+    return (<tr>
+            {weekRender()}
+        </tr>
+    );
 }
 
 Week.propTypes = {

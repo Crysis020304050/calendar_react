@@ -4,7 +4,6 @@ import CalendarBody from "../CalendarBody";
 import CalendarNav from "../CalendarNav";
 import PropTypes from 'prop-types';
 
-
 class Calendar extends Component {
     constructor(props) {
         super(props);

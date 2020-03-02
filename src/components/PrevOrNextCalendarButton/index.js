@@ -5,14 +5,17 @@ import {calendarModes} from "../../constants";
 import styles from './PrevOrNextCalendarButton.module.scss'
 
 function PrevOrNextCalendarButton(props) {
-
     const {isNext, mode, firstDate, changeFirstDateAndLastDate} = props;
     let buttonSign;
     if (isNext) {
-        buttonSign = calendarModes.MONTH === mode ? firstDate.clone().add(1, calendarModes.MONTH).format('MMM') : 'next';
+        buttonSign = calendarModes.MONTH === mode ?
+            firstDate.clone().add(1, calendarModes.MONTH).format('MMM') :
+            'next';
     }
     else {
-        buttonSign = calendarModes.MONTH === mode ? firstDate.clone().subtract(1, calendarModes.MONTH).format('MMM') : 'prev';
+        buttonSign = calendarModes.MONTH === mode ?
+            firstDate.clone().subtract(1, calendarModes.MONTH).format('MMM') :
+            'prev';
     }
 
     const onCLick = () => {

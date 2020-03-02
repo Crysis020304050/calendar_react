@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Week from '../Week';
 import styles from './CalendarBody.module.scss';
 import moment from 'moment';
@@ -18,10 +18,9 @@ const CalendarHeader = props => {
     </thead>);
 };
 
-class CalendarBody extends Component {
-
-    renderBody = () => {
-        const {firstDate, lastDate, today, events, selectDay, selectedDay} = this.props;
+function CalendarBody(props) {
+    const renderBody = () => {
+        const {firstDate, lastDate, today, events, selectDay, selectedDay} = props;
         const weeks = [];
         const startDay = firstDate.clone().day(-1);
         do {
@@ -31,21 +30,21 @@ class CalendarBody extends Component {
         }
         while (lastDate.isSameOrAfter(startDay, 'date'));
         return weeks.map((week, index) => {
-            return <Week key={index} firstDate={firstDate} lastDate={lastDate} selectDay={selectDay} selectedDay={selectedDay} today={today} week={week} events={events}/>
+            return <Week key={index} firstDate={firstDate} lastDate={lastDate} selectDay={selectDay}
+                         selectedDay={selectedDay} today={today} week={week} events={events}/>
         });
     };
 
-    render() {
-        return (<table>
+    return (
+        <table>
             <CalendarHeader/>
             <tbody>
             {
-                this.renderBody()
+                renderBody()
             }
             </tbody>
-        </table>);
-
-    }
+        </table>
+    );
 }
 
 CalendarBody.propTypes = {
