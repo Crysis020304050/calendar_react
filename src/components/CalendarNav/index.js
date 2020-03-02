@@ -8,14 +8,14 @@ import Icon from '@mdi/react';
 import {mdiChevronDown} from '@mdi/js';
 
 const CentralNavSign = props => {
-    const {firstDate, lastDate, mode, isMenuOpen, toggleContainer, toggleMenu} = props;
+    const {firstDate, lastDate, mode, isMenuOpen, toggleMenu} = props;
 
     const sign = mode === calendarModes.MONTH ?
         firstDate.clone().format('MMM') :
         `${firstDate.clone().format('MMMM')} ${firstDate.clone().format('D')}-${lastDate.clone().format('D')}`;
 
     return (
-        <div className={styles.centralSign} onClick={toggleMenu} ref={toggleContainer}>
+        <div className={styles.centralSign} onClick={toggleMenu}>
             <div className={styles.currentItem}>{sign}</div>
             <Icon size={'24px'} path={mdiChevronDown} color={'white'} rotate={isMenuOpen ? 180 : 0}/>
         </div>
@@ -32,11 +32,11 @@ class CalendarNav extends Component {
     }
 
     componentDidMount() {
-        window.addEventListener('click', this.onClickOutsideHandler);
+        window.addEventListener('mousedown', this.onClickOutsideHandler);
     }
 
     componentWillUnmount() {
-        window.removeEventListener('click', this.onClickOutsideHandler);
+        window.removeEventListener('mousedown', this.onClickOutsideHandler);
     }
 
     toggleMenu = () => {
@@ -64,12 +64,12 @@ class CalendarNav extends Component {
         const {mode, firstDate, lastDate, changeFirstDateAndLastDate} = this.props;
         const {isMenuOpen} = this.state;
         return (
-            <div className={styles.container}>
+            <div ref={this.toggleContainer} className={styles.container}>
                 <nav className={styles.navContainer}>
                     <PrevOrNextCalendarButton mode={mode} firstDate={firstDate}
                                               changeFirstDateAndLastDate={changeFirstDateAndLastDate}/>
                     <CentralNavSign toggleMenu={this.toggleMenu} isMenuOpen={isMenuOpen} firstDate={firstDate}
-                                    lastDate={lastDate} mode={mode} toggleContainer={this.toggleContainer}/>
+                                    lastDate={lastDate} mode={mode}/>
                     <PrevOrNextCalendarButton isNext={true} mode={mode} firstDate={firstDate}
                                               changeFirstDateAndLastDate={changeFirstDateAndLastDate}/>
                 </nav>
@@ -99,7 +99,6 @@ CentralNavSign.propTypes = {
     lastDate: PropTypes.instanceOf(moment).isRequired,
     mode: PropTypes.string.isRequired,
     isMenuOpen: PropTypes.bool.isRequired,
-    toggleContainer: PropTypes.object.isRequired,
     toggleMenu: PropTypes.func.isRequired,
 };
 
