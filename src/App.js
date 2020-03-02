@@ -26,14 +26,17 @@ class App extends Component {
                 });
                 this.setState({
                     events: eventsMap,
-                    isFetching: false,
                 });
             })
             .catch(err => {
                 this.setState({
                     error: err,
-                    isFetching: false,
                 });
+            })
+            .finally(() => {
+                this.setState({
+                    isFetching: false,
+                })
             });
     };
 
