@@ -12,7 +12,9 @@ function CentralNavSign(props) {
 
     const sign = mode === calendarModes.MONTH ?
         firstDate.clone().format('MMM') :
-        `${firstDate.clone().format('MMMM')} ${firstDate.clone().format('D')}-${lastDate.clone().format('D')}`;
+        firstDate.month() === lastDate.month() ?
+        `${firstDate.clone().format('MMMM')} ${firstDate.clone().format('D')}-${lastDate.clone().format('D')}` :
+        `${firstDate.clone().format('MMM')} ${firstDate.clone().format('D')}-${lastDate.clone().format('MMM')} ${lastDate.clone().format('D')}`;
 
     return (
         <div className={styles.centralSign} onClick={toggleMenu}>
