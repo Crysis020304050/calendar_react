@@ -3,24 +3,8 @@ import moment from "moment";
 import PropTypes from 'prop-types';
 import {calendarModes} from "../../constants";
 import PrevOrNextCalendarButton from "../PrevOrNextCalendarButton";
+import CentralNavSign from "../CentralNavSign";
 import styles from './CalendarNav.module.scss';
-import Icon from '@mdi/react';
-import {mdiChevronDown} from '@mdi/js';
-
-const CentralNavSign = props => {
-    const {firstDate, lastDate, mode, isMenuOpen, toggleMenu} = props;
-
-    const sign = mode === calendarModes.MONTH ?
-        firstDate.clone().format('MMM') :
-        `${firstDate.clone().format('MMMM')} ${firstDate.clone().format('D')}-${lastDate.clone().format('D')}`;
-
-    return (
-        <div className={styles.centralSign} onClick={toggleMenu}>
-            <div className={styles.currentItem}>{sign}</div>
-            <Icon size={'24px'} path={mdiChevronDown} color={'white'} rotate={isMenuOpen ? 180 : 0}/>
-        </div>
-    );
-};
 
 class CalendarNav extends Component {
     constructor(props) {
@@ -92,14 +76,6 @@ CalendarNav.propTypes = {
     firstDate: PropTypes.instanceOf(moment).isRequired,
     lastDate: PropTypes.instanceOf(moment).isRequired,
     changeFirstDateAndLastDate: PropTypes.func.isRequired,
-};
-
-CentralNavSign.propTypes = {
-    firstDate: PropTypes.instanceOf(moment).isRequired,
-    lastDate: PropTypes.instanceOf(moment).isRequired,
-    mode: PropTypes.string.isRequired,
-    isMenuOpen: PropTypes.bool.isRequired,
-    toggleMenu: PropTypes.func.isRequired,
 };
 
 export default CalendarNav;
