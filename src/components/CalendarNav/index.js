@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 import moment from "moment";
 import PropTypes from 'prop-types';
-import {calendarModes} from "../../constants";
-import PrevOrNextCalendarButton from "../PrevOrNextCalendarButton";
-import CentralNavSign from "../CentralNavSign";
-import styles from './CalendarNav.module.scss';
+import CalendarNavRender from "../CalindarNavRender";
 
 class CalendarNav extends Component {
     constructor(props) {
@@ -48,24 +45,7 @@ class CalendarNav extends Component {
         const {mode, firstDate, lastDate, changeFirstDateAndLastDate} = this.props;
         const {isMenuOpen} = this.state;
         return (
-            <div ref={this.toggleContainer} className={styles.container}>
-                <nav className={styles.navContainer}>
-                    <PrevOrNextCalendarButton mode={mode} firstDate={firstDate}
-                                              changeFirstDateAndLastDate={changeFirstDateAndLastDate}/>
-                    <CentralNavSign toggleMenu={this.toggleMenu} isMenuOpen={isMenuOpen} firstDate={firstDate}
-                                    lastDate={lastDate} mode={mode}/>
-                    <PrevOrNextCalendarButton isNext={true} mode={mode} firstDate={firstDate}
-                                              changeFirstDateAndLastDate={changeFirstDateAndLastDate}/>
-                </nav>
-                {
-                    isMenuOpen && (
-                        <div className={styles.downMenu}>
-                            <div onClick={() => this.onButtonClick(calendarModes.WEEK)}>This week</div>
-                            <div onClick={() => this.onButtonClick(calendarModes.MONTH)}>This month</div>
-                        </div>
-                    )
-                }
-            </div>
+            <CalendarNavRender mode={mode} firstDate={firstDate} lastDate={lastDate} changeFirstDateAndLastDate={changeFirstDateAndLastDate} isMenuOpen={isMenuOpen} toggleContainer={this.toggleContainer} toggleMenu={this.toggleMenu} onButtonClick={this.onButtonClick}/>
         )
     }
 }
