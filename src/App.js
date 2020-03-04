@@ -5,7 +5,6 @@ import Calendar from "./components/Calendar";
 import moment from "moment";
 import {calendarModes} from "./constants";
 
-
 class App extends Component {
     constructor(props, context) {
         super(props, context);
@@ -51,11 +50,11 @@ class App extends Component {
     }
 
     render() {
-        const {isFetching, error} = this.state;
+        const {isFetching} = this.state;
         return (
             <div className={styles.container}>
                 {
-                    !isFetching && !error && <Calendar mode={this.state.mode} events={this.state.events} changeMode={this.changeMode}/>
+                    !isFetching && <Calendar mode={this.state.mode} events={this.state.events} changeMode={this.changeMode}/>
                 }
             </div>
         );

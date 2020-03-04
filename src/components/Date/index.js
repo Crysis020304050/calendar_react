@@ -11,7 +11,7 @@ const EventItem = props => {
 
 function Date(props) {
     const renderEvents = (events, date, today) => {
-        const dayEvents = events.get(date.format('DD.MM.YYYY'));
+        const dayEvents = events?.get(date.format('DD.MM.YYYY'));
         if (dayEvents) {
             return dayEvents.map((event, index) => {
                 if (index < 3) {
