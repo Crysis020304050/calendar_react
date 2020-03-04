@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import moment from "moment";
 import CalendarBody from "../CalendarBody";
 import CalendarNav from "../CalendarNav";
+import EventList from "../EventList";
 import PropTypes from 'prop-types';
 
 class Calendar extends Component {
@@ -38,6 +39,7 @@ class Calendar extends Component {
                              changeFirstDateAndLastDate={this.changeFirstDateAndLastDate}/>
                 <CalendarBody events={events} selectDay={this.selectDay} selectedDay={selectedDay} today={today}
                               firstDate={firstDate} lastDate={lastDate}/>
+                <EventList today={today} events={events} selectedDay={selectedDay} lastDate={lastDate}/>
             </Fragment>
         );
     }

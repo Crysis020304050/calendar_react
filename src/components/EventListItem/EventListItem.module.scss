@@ -1,0 +1,23 @@
+@import "src/styles/modules/mainStyles";
+
+.container {
+  @include blueMainColorWithOpacityBackground(0.5);
+  border-radius: 2px;
+}
+
+.isIn {
+  background-color: $green-main-color;
+}
+
+.dateSign {
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 14px;
+  @include blueMainColorWithOpacityText(0.3);
+}
+
+.today {
+  font-size: 16px;
+  color: $blue-main-color;
+  font-weight: 700;
+}

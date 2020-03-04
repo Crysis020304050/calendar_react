@@ -33,8 +33,7 @@ function Date(props) {
     return (
         <td onClick={onDateClick} className={classNames(styles.container,
             {[styles.selected]: selectedDay.isSame(date, "date")},
-            {[styles.dayNotInThisMonth]: date.isBefore(firstDate, "date") || date.isAfter(lastDate, "date")}
-        )}>
+            {[styles.dayNotInThisMonth]: date.isBefore(firstDate, "date") || date.isAfter(lastDate, "date")})}>
             <h5 className={classNames({[styles.currentDay]: today.isSame(date, "date")})}>{date.clone().format('D')}</h5>
             <ul className={classNames(styles.eventList)}>
                 {renderEvents(events, date, today)}
