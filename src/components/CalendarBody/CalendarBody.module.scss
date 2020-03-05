@@ -1,5 +1,9 @@
 @import "src/styles/modules/mainStyles";
 
+table {
+  padding-top: 23px;
+}
+
 .tableHeader {
   font-size: 11px;
   background-color: $blue-main-color;

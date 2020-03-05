@@ -23,12 +23,11 @@ function CalendarBody(props) {
         const {firstDate, lastDate, today, events, selectDay, selectedDay} = props;
         const weeks = [];
         const startDay = firstDate.clone().day(-1);
-        do {
+        while (lastDate.isAfter(startDay, 'date')) {
             weeks.push(
                 Array(7).fill(0).map(() => startDay.add(1, 'day').clone())
             )
         }
-        while (lastDate.isSameOrAfter(startDay, 'date'));
         return weeks.map((week, index) => {
             return <Week key={index} firstDate={firstDate} lastDate={lastDate} selectDay={selectDay}
                          selectedDay={selectedDay} today={today} week={week} events={events}/>

@@ -5,5 +5,9 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  justify-content: center;
+  position: relative;
+  height: 500px;
+  overflow-y: auto;
+
+  border: 1px solid;
 }

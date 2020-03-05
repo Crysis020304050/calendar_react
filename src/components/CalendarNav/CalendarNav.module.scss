@@ -1,7 +1,10 @@
 @import "src/styles/modules/mainStyles";
 
 .container {
-  position: relative;
+  max-width: 299px;
+  width: 100%;
+  position: fixed;
+  top: 0;
   text-transform: uppercase;
   background-color: $blue-main-color;
 }
