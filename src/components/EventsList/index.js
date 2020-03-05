@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import moment from "moment";
-import EventListItem from "../EventListItem";
-import styles from './EventList.module.scss';
+import EventsListItem from "../EventsListItem";
+import styles from './EventsList.module.scss';
 
-function EventList(props) {
+function EventsList(props) {
     const renderEvents = () => {
         const {events, selectedDay, lastDate, today} = props;
         const daysEvents = [];
@@ -22,7 +22,7 @@ function EventList(props) {
         while (lastDate.isSameOrAfter(startDay, 'date'));
 
         return daysEvents.map((dayEvents, index) => {
-            return <EventListItem selectedDay={selectedDay} key={index} dayEvents={dayEvents} today={today}/>;
+            return <EventsListItem selectedDay={selectedDay} key={index} dayEvents={dayEvents} today={today}/>;
         });
     };
 
@@ -36,9 +36,9 @@ function EventList(props) {
 
 }
 
-export default EventList;
+export default EventsList;
 
-EventList.propTypes = {
+EventsList.propTypes = {
     events: PropTypes.instanceOf(Map),
     selectedDay: PropTypes.instanceOf(moment).isRequired,
     lastDate: PropTypes.instanceOf(moment).isRequired,

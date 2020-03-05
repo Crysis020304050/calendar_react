@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import styles from './EventListItem.module.scss';
+import styles from './EventsListItem.module.scss';
 import moment from "moment";
 
-function EventListItem(props) {
+function EventsListItem(props) {
     const {dayEvents: {day, events}, today, selectedDay} = props;
     const renderEvents = () => {
         return events.map((event, index) => {
@@ -14,7 +14,7 @@ function EventListItem(props) {
                      className={classNames(styles.container, {[styles.isIn]: isIn && day.isSameOrAfter(today)})}>
                     <div className={styles.eventHeader}>
                         <h5 style={{flexGrow: 1}}>{name}</h5>
-                        <h5>{time}</h5>
+                        <h5>{moment(`${day.clone().format('DD.MM.YYYY')} ${time}`).format('LT')}</h5>
                     </div>
                     <div className={styles.eventFooter}>{body}</div>
                 </div>
@@ -42,9 +42,9 @@ function EventListItem(props) {
     );
 }
 
-export default EventListItem;
+export default EventsListItem;
 
-EventListItem.propTypes = {
+EventsListItem.propTypes = {
     dayEvents: PropTypes.object.isRequired,
     today: PropTypes.instanceOf(moment).isRequired,
     selectedDay: PropTypes.instanceOf(moment).isRequired,

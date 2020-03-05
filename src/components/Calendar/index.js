@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import moment from "moment";
 import CalendarBody from "../CalendarBody";
 import CalendarNav from "../CalendarNav";
-import EventList from "../EventList";
+import EventList from "../EventsList";
 import PropTypes from 'prop-types';
 
 class Calendar extends Component {
