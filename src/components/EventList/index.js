@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import moment from "moment";
 import EventListItem from "../EventListItem";
+import styles from './EventList.module.scss';
 
 function EventList(props) {
     const renderEvents = () => {
@@ -21,13 +22,12 @@ function EventList(props) {
         while (lastDate.isSameOrAfter(startDay, 'date'));
 
         return daysEvents.map((dayEvents, index) => {
-            return <EventListItem key={index} dayEvents={dayEvents} today={today}/>;
+            return <EventListItem selectedDay={selectedDay} key={index} dayEvents={dayEvents} today={today}/>;
         });
     };
 
-
     return (
-        <ul>
+        <ul className={styles.container}>
             {
                 renderEvents()
             }
@@ -42,5 +42,6 @@ EventList.propTypes = {
     events: PropTypes.instanceOf(Map),
     selectedDay: PropTypes.instanceOf(moment).isRequired,
     lastDate: PropTypes.instanceOf(moment).isRequired,
+    today: PropTypes.instanceOf(moment).isRequired,
 };
 

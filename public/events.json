@@ -40,40 +40,6 @@
     ]
   },
   {
-    "date": "2020-02-30",
-    "events": [
-      {
-        "name": "Event Name3",
-        "body": "Event body3",
-        "time": "19:00",
-        "isIn": true
-      },
-      {
-        "name": "Event Name4",
-        "body": "Event body4",
-        "time": "22:30",
-        "isIn": true
-      }
-    ]
-  },
-  {
-    "date": "2020-03-01",
-    "events": [
-      {
-        "name": "Event Name3",
-        "body": "Event body3",
-        "time": "19:00",
-        "isIn": true
-      },
-      {
-        "name": "Event Name4",
-        "body": "Event body4",
-        "time": "22:30",
-        "isIn": true
-      }
-    ]
-  },
-  {
     "date": "2020-03-02",
     "events": [
       {
@@ -87,6 +53,17 @@
         "body": "Event body4",
         "time": "22:30",
         "isIn": true
+      }
+    ]
+  },
+  {
+    "date": "2020-03-05",
+    "events": [
+      {
+        "name": "Event Name3",
+        "body": "Event body3",
+        "time": "19:00",
+        "isIn": true
       },
       {
         "name": "Event Name4",
@@ -97,7 +74,30 @@
     ]
   },
   {
-    "date": "2020-03-04",
+    "date": "2020-03-06",
+    "events": [
+      {
+        "name": "Event Name3",
+        "body": "Event body3",
+        "time": "19:00",
+        "isIn": true
+      },
+      {
+        "name": "Event Name4",
+        "body": "Event body4",
+        "time": "22:30",
+        "isIn": true
+      },
+      {
+        "name": "Event Name4",
+        "body": "Event body4",
+        "time": "22:30",
+        "isIn": true
+      }
+    ]
+  },
+  {
+    "date": "2020-03-07",
     "events": [
       {
         "name": "Event Name5",

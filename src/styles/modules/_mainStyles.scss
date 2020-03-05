@@ -1,7 +1,6 @@
 $blue-main-color: #0C3156;
 $green-main-color: #5EB8B7;
 $orange-main-color: #F06543;
-$white-main-color-opacity: rgba(255, 255, 255, 0.5);
 
 @mixin blueMainColorWithOpacityBackground($opacity){
   background-color: rgba(12, 49, 86, $opacity);
@@ -9,4 +8,8 @@ $white-main-color-opacity: rgba(255, 255, 255, 0.5);
 
 @mixin blueMainColorWithOpacityText($opacity){
   color: rgba(12, 49, 86, $opacity);
+}
+
+@mixin whiteMainColorWithOpacityText($opacity){
+  color: rgba(255, 255, 255, $opacity);
 }
