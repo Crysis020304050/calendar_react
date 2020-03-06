@@ -42,9 +42,18 @@
   align-items: center;
   justify-content: flex-start;
 
+  h5 {
+    white-space: nowrap;
+  }
   /*&:first-child {
-    flex-grow: 1;
-  }*/
+   flex-grow: 1;
+ }*/
+}
+
+.ellipsisLongText {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
 }
 
 .eventFooter {
@@ -53,7 +62,6 @@
   font-weight: 700;
   letter-spacing: -0.3px;
   line-height: 19px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+
+  @extend .ellipsisLongText;
 }

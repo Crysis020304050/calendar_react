@@ -13,7 +13,7 @@ function EventsListItem(props) {
                 <div key={index}
                      className={classNames(styles.container, {[styles.isIn]: isIn && day.isSameOrAfter(today)})}>
                     <div className={styles.eventHeader}>
-                        <h5 style={{flexGrow: 1}}>{name}</h5>
+                        <h5 style={{flexGrow: 1}} className={styles.ellipsisLongText}>{name}</h5>
                         <h5>{moment(`${day.clone().format('DD.MM.YYYY')} ${time}`).format('LT')}</h5>
                     </div>
                     <div className={styles.eventFooter}>{body}</div>
