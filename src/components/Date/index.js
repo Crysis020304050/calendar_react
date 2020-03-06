@@ -3,15 +3,16 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './Date.module.scss';
 import moment from 'moment';
+import {addHoursToDayTime} from "../../utils/addHoursToDayTime";
 
 const EventItem = props => {
-    const {event: {isIn}, date, today} = props;
-    return <li className={classNames(styles.event, {[styles.inEvent]: isIn && date.isSameOrAfter(today.clone().format('YYYY-MM-DD'))})}/>;
+    const {event: {isIn, time}, date, today} = props;
+    return <li className={classNames(styles.event, {[styles.inEvent]: isIn && addHoursToDayTime(date, time).isSameOrAfter(today)})}/>;
 };
 
 function Date(props) {
     const renderEvents = (events, date, today) => {
-        const dayEvents = events?.get(date.format('YYYY-MM-DD'));
+        const dayEvents = events?.get(date.clone().format('YYYY-MM-DD'));
         if (dayEvents) {
             return dayEvents.map((event, index) => {
                 if (index < 3) {

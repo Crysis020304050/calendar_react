@@ -4,6 +4,7 @@ import {loadJson} from './utils/loadJson';
 import Calendar from "./components/Calendar";
 import moment from "moment";
 import {calendarModes} from "./constants";
+import {addHoursToDayTime} from "./utils/addHoursToDayTime";
 
 class App extends Component {
     constructor(props, context) {
@@ -16,12 +17,15 @@ class App extends Component {
         };
     }
 
-    loadEvents = () => {
+    loadAndSortEvents = () => {
         const eventsMap = new Map();
         loadJson('./events.json')
             .then(datesAndEventsList => {
                 datesAndEventsList.forEach(dateAndEvents => {
-                    eventsMap.set(moment(dateAndEvents.date).format('YYYY-MM-DD'), dateAndEvents.events);
+                    const {date, events} = dateAndEvents;
+                    const formattedDate = moment(date).format('YYYY-MM-DD');
+                    events.sort((a, b) => addHoursToDayTime(formattedDate, a.time)- addHoursToDayTime(formattedDate, b.time));
+                    eventsMap.set(formattedDate, events);
                 });
                 this.setState({
                     events: eventsMap,
@@ -31,6 +35,7 @@ class App extends Component {
                 this.setState({
                     error: err,
                 });
+                console.dir(err);
             })
             .finally(() => {
                 this.setState({
@@ -46,7 +51,7 @@ class App extends Component {
     };
 
     componentDidMount() {
-        this.loadEvents();
+        this.loadAndSortEvents();
     }
 
     render() {
