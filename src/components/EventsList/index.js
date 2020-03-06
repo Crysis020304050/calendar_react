@@ -10,7 +10,7 @@ function EventsList(props) {
         const daysEvents = [];
         const startDay = selectedDay.clone();
         do {
-            const dayEvents = events?.get(startDay.clone().format('DD.MM.YYYY'));
+            const dayEvents = events?.get(startDay.clone().format('YYYY-MM-DD'));
             if (dayEvents) {
                 daysEvents.push({
                     day: startDay.clone(),

@@ -6,12 +6,12 @@ import moment from 'moment';
 
 const EventItem = props => {
     const {event: {isIn}, date, today} = props;
-    return <li className={classNames(styles.event, {[styles.inEvent]: isIn && date.isSameOrAfter(today)})}/>;
+    return <li className={classNames(styles.event, {[styles.inEvent]: isIn && date.isSameOrAfter(today.clone().format('YYYY-MM-DD'))})}/>;
 };
 
 function Date(props) {
     const renderEvents = (events, date, today) => {
-        const dayEvents = events?.get(date.format('DD.MM.YYYY'));
+        const dayEvents = events?.get(date.format('YYYY-MM-DD'));
         if (dayEvents) {
             return dayEvents.map((event, index) => {
                 if (index < 3) {

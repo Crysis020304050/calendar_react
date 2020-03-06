@@ -56,6 +56,11 @@
   text-overflow: ellipsis
 }
 
+.eventName {
+  @extend .ellipsisLongText;
+  flex-grow: 1;
+}
+
 .eventFooter {
   color: #fff;
   font-size: 16px;

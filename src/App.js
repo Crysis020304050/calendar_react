@@ -21,7 +21,7 @@ class App extends Component {
         loadJson('./events.json')
             .then(datesAndEventsList => {
                 datesAndEventsList.forEach(dateAndEvents => {
-                    eventsMap.set(moment(dateAndEvents.date).format('DD.MM.YYYY'), dateAndEvents.events);
+                    eventsMap.set(moment(dateAndEvents.date).format('YYYY-MM-DD'), dateAndEvents.events);
                 });
                 this.setState({
                     events: eventsMap,
