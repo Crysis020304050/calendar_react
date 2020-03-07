@@ -24,8 +24,8 @@ class App extends Component {
                 datesAndEventsList.forEach(dateAndEvents => {
                     const {date, events} = dateAndEvents;
                     const formattedDate = moment(date).format('YYYY-MM-DD');
-                    events.sort((a, b) => addHoursToDayTime(formattedDate, a.time)- addHoursToDayTime(formattedDate, b.time));
-                    eventsMap.set(formattedDate, events);
+                    const sortedEvents = events.map(event => ({...event, dateWithHours: addHoursToDayTime(formattedDate, event.time)})).sort((a, b) => a.dateWithHours - b.dateWithHours);
+                    eventsMap.set(formattedDate, sortedEvents);
                 });
                 this.setState({
                     events: eventsMap,
@@ -35,7 +35,6 @@ class App extends Component {
                 this.setState({
                     error: err,
                 });
-                console.dir(err);
             })
             .finally(() => {
                 this.setState({
@@ -55,11 +54,11 @@ class App extends Component {
     }
 
     render() {
-        const {isFetching} = this.state;
+        const {isFetching, mode, events} = this.state;
         return (
             <div className={styles.container}>
                 {
-                    !isFetching && <Calendar mode={this.state.mode} events={this.state.events} changeMode={this.changeMode}/>
+                    !isFetching && <Calendar mode={mode} events={events} changeMode={this.changeMode}/>
                 }
             </div>
         );

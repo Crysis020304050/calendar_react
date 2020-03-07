@@ -3,21 +3,20 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './EventsListItem.module.scss';
 import moment from "moment";
-import {addHoursToDayTime} from "../../utils/addHoursToDayTime";
 
 function EventsListItem(props) {
     const {dayEvents: {day, events}, today, selectedDay} = props;
 
     const renderEvents = () => {
         return events.map((event, index) => {
-            const {name, body, time, isIn} = event;
+            const {name, body, isIn, dateWithHours} = event;
 
             return (
                 <div key={index}
-                     className={classNames(styles.container, {[styles.isIn]: isIn && addHoursToDayTime(day, time).isSameOrAfter(today)})}>
+                     className={classNames(styles.container, {[styles.isIn]: isIn && dateWithHours.isSameOrAfter(today)})}>
                     <div className={styles.eventHeader}>
                         <h5 className={styles.eventName}>{name}</h5>
-                        <h5>{addHoursToDayTime(day, time).format('LT')}</h5>
+                        <h5>{dateWithHours.format('LT')}</h5>
                     </div>
                     <div className={styles.eventFooter}>{body}</div>
                 </div>

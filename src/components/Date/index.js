@@ -3,15 +3,16 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './Date.module.scss';
 import moment from 'moment';
-import {addHoursToDayTime} from "../../utils/addHoursToDayTime";
 
 const EventItem = props => {
-    const {event: {isIn, time}, date, today} = props;
-    return <li className={classNames(styles.event, {[styles.inEvent]: isIn && addHoursToDayTime(date, time).isSameOrAfter(today)})}/>;
+    const {event: {isIn, dateWithHours}, today} = props;
+    return <li className={classNames(styles.event, {[styles.inEvent]: isIn && dateWithHours.isSameOrAfter(today)})}/>;
 };
 
 function Date(props) {
-    const renderEvents = (events, date, today) => {
+    const {selectedDay, events, today, date, firstDate, lastDate} = props;
+
+    const renderEvents = () => {
         const dayEvents = events?.get(date.clone().format('YYYY-MM-DD'));
         if (dayEvents) {
             return dayEvents.map((event, index) => {
@@ -30,14 +31,15 @@ function Date(props) {
         selectDay(date);
     };
 
-    const {selectedDay, events, today, date, firstDate, lastDate} = props;
+    const dayContainerClasses = classNames(styles.container,
+        {[styles.selected]: selectedDay.isSame(date, "date")},
+        {[styles.dayNotInThisMonth]: date.isBefore(firstDate, "date") || date.isAfter(lastDate, "date")});
+
     return (
-        <td onClick={onDateClick} className={classNames(styles.container,
-            {[styles.selected]: selectedDay.isSame(date, "date")},
-            {[styles.dayNotInThisMonth]: date.isBefore(firstDate, "date") || date.isAfter(lastDate, "date")})}>
+        <td onClick={onDateClick} className={dayContainerClasses}>
             <h5 className={classNames({[styles.currentDay]: today.isSame(date, "date")})}>{date.clone().format('D')}</h5>
             <ul className={classNames(styles.eventList)}>
-                {renderEvents(events, date, today)}
+                {renderEvents()}
             </ul>
         </td>
     );
