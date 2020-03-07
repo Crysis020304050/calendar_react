@@ -25,9 +25,8 @@ function Date(props) {
         return null;
     };
 
-    const onDateClick = (e) => {
+    const onDateClick = () => {
         const {selectDay, date} = props;
-        e.stopPropagation();
         selectDay(date);
     };
 

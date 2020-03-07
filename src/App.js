@@ -6,12 +6,12 @@ import moment from "moment";
 import {calendarModes} from "./constants";
 
 class App extends Component {
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
         this.state = {
             events: null,
             error: null,
-            isFetching: true,
+            isFetching: false,
             mode: calendarModes.MONTH,
         };
     }
@@ -22,8 +22,11 @@ class App extends Component {
         return eventsWithNewField.sort((a, b) => a.dateWithHours - b.dateWithHours);
     };
 
-    loadAndSortEvents = () => {
+    loadEvents = () => {
         const eventsMap = new Map();
+        this.setState({
+            isFetching: true,
+        });
         loadJson('./events.json')
             .then(datesAndEventsList => {
                 datesAndEventsList.forEach(dateAndEvents => {
@@ -47,15 +50,15 @@ class App extends Component {
             });
     };
 
+    componentDidMount() {
+        this.loadEvents();
+    }
+
     changeMode = mode => {
         this.setState({
             mode: mode,
         });
     };
-
-    componentDidMount() {
-        this.loadAndSortEvents();
-    }
 
     render() {
         const {isFetching, mode, events} = this.state;

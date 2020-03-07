@@ -10,7 +10,7 @@ function EventsList(props) {
         const daysEvents = [];
         const startDay = selectedDay.clone();
 
-        while (lastDate.isAfter(startDay, 'date')) {
+        while (lastDate.isSameOrAfter(startDay, 'date')) {
             const dayEvents = events?.get(startDay.clone().format('YYYY-MM-DD'));
             if (dayEvents) {
                 daysEvents.push({
