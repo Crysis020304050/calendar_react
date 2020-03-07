@@ -9,7 +9,8 @@ function EventsList(props) {
         const {events, selectedDay, lastDate, today} = props;
         const daysEvents = [];
         const startDay = selectedDay.clone();
-        do {
+
+        while (lastDate.isAfter(startDay, 'date')) {
             const dayEvents = events?.get(startDay.clone().format('YYYY-MM-DD'));
             if (dayEvents) {
                 daysEvents.push({
@@ -19,7 +20,6 @@ function EventsList(props) {
             }
             startDay.add(1, 'day');
         }
-        while (lastDate.isSameOrAfter(startDay, 'date'));
 
         return daysEvents.map((dayEvents, index) => {
             return <EventsListItem selectedDay={selectedDay} key={index} dayEvents={dayEvents} today={today}/>;

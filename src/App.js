@@ -4,7 +4,6 @@ import {loadJson} from './utils/loadJson';
 import Calendar from "./components/Calendar";
 import moment from "moment";
 import {calendarModes} from "./constants";
-import {addHoursToDayTime} from "./utils/addHoursToDayTime";
 
 class App extends Component {
     constructor(props, context) {
@@ -17,6 +16,12 @@ class App extends Component {
         };
     }
 
+    addNewFieldToEventsAndSortIt = (formattedDate, events) => {
+        const addHoursToDayTime = (day, time) => moment(`${day} ${time}`);
+        const eventsWithNewField = events.map(event => ({...event, dateWithHours: addHoursToDayTime(formattedDate, event.time)}));
+        return eventsWithNewField.sort((a, b) => a.dateWithHours - b.dateWithHours);
+    };
+
     loadAndSortEvents = () => {
         const eventsMap = new Map();
         loadJson('./events.json')
@@ -24,8 +29,7 @@ class App extends Component {
                 datesAndEventsList.forEach(dateAndEvents => {
                     const {date, events} = dateAndEvents;
                     const formattedDate = moment(date).format('YYYY-MM-DD');
-                    const sortedEvents = events.map(event => ({...event, dateWithHours: addHoursToDayTime(formattedDate, event.time)})).sort((a, b) => a.dateWithHours - b.dateWithHours);
-                    eventsMap.set(formattedDate, sortedEvents);
+                    eventsMap.set(formattedDate, this.addNewFieldToEventsAndSortIt(formattedDate, events));
                 });
                 this.setState({
                     events: eventsMap,

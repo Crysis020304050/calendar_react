@@ -52,5 +52,4 @@ Calendar.propTypes = {
     changeMode: PropTypes.func.isRequired,
 };
 
-
 export default Calendar;
