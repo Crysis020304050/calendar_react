@@ -13,13 +13,13 @@ function CentralNavSign(props) {
 
     let sign = '';
     if (mode === calendarModes.MONTH) {
-        sign = firstDate.clone().format(calendarDatesFormats.SHIRT_MONTH);
+        sign = firstDate.clone().format(calendarDatesFormats.SHORT_MONTH);
     }
     else if (firstDate.month() === lastDate.month()) {
         sign = `${firstDate.clone().format(calendarDatesFormats.LONG_MONTH)} ${firstDate.clone().format(calendarDatesFormats.DAY)}-${lastDate.clone().format(calendarDatesFormats.DAY)}`;
     }
     else {
-        sign = `${firstDate.clone().format(calendarDatesFormats.SHIRT_MONTH)} ${firstDate.clone().format(calendarDatesFormats.DAY)}-${lastDate.clone().format(calendarDatesFormats.SHIRT_MONTH)} ${lastDate.clone().format(calendarDatesFormats.DAY)}`;
+        sign = `${firstDate.clone().format(calendarDatesFormats.SHORT_MONTH)} ${firstDate.clone().format(calendarDatesFormats.DAY)}-${lastDate.clone().format(calendarDatesFormats.SHORT_MONTH)} ${lastDate.clone().format(calendarDatesFormats.DAY)}`;
     }
 
     return (

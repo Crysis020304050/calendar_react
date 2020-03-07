@@ -10,12 +10,12 @@ function PrevOrNextCalendarButton(props) {
     let buttonSign = '';
     if (isNext) {
         buttonSign = calendarModes.MONTH === mode ?
-            firstDate.clone().add(1, calendarModes.MONTH).format(calendarDatesFormats.SHIRT_MONTH) :
+            firstDate.clone().add(1, calendarModes.MONTH).format(calendarDatesFormats.SHORT_MONTH) :
             'next';
     }
     else {
         buttonSign = calendarModes.MONTH === mode ?
-            firstDate.clone().subtract(1, calendarModes.MONTH).format(calendarDatesFormats.SHIRT_MONTH) :
+            firstDate.clone().subtract(1, calendarModes.MONTH).format(calendarDatesFormats.SHORT_MONTH) :
             'prev';
     }
 

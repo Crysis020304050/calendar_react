@@ -28,7 +28,7 @@ function EventsListItem(props) {
     const renderDaySign = () => {
         return selectedDay.isSame(day, "date") ?
             day.clone().format(calendarDatesFormats.LONG_DAY_WITH_DATE_AND_MONTH) :
-            day.clone().format(calendarDatesFormats.SHIRT_DAY_WITH_DATE_AND_MONTH)
+            day.clone().format(calendarDatesFormats.SHORT_DAY_WITH_DATE_AND_MONTH)
     };
 
     return (
