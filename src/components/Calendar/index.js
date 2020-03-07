@@ -4,15 +4,16 @@ import CalendarBody from "../CalendarBody";
 import CalendarNav from "../CalendarNav";
 import EventList from "../EventsList";
 import PropTypes from 'prop-types';
+import {calendarModes} from "../../constants";
 
 class Calendar extends Component {
     constructor(props) {
         super(props);
-        const {mode} = this.props;
         this.state = {
+            mode: calendarModes.MONTH,
             today: moment(),
-            firstDate: moment().startOf(mode),
-            lastDate: moment().endOf(mode),
+            firstDate: moment().startOf(calendarModes.MONTH),
+            lastDate: moment().endOf(calendarModes.MONTH),
             selectedDay: moment(),
         }
     }
@@ -23,6 +24,12 @@ class Calendar extends Component {
         })
     };
 
+    changeMode = mode => {
+        this.setState({
+            mode: mode,
+        });
+    };
+
     changeFirstDateAndLastDate = (firstDate, lastDate) => {
         this.setState({
             firstDate: firstDate,
@@ -31,11 +38,11 @@ class Calendar extends Component {
     };
 
     render() {
-        const {today, selectedDay, firstDate, lastDate} = this.state;
-        const {mode, events, changeMode} = this.props;
+        const {mode, today, selectedDay, firstDate, lastDate} = this.state;
+        const {events} = this.props;
         return (
             <Fragment>
-                <CalendarNav mode={mode} changeMode={changeMode} firstDate={firstDate} lastDate={lastDate}
+                <CalendarNav mode={mode} changeMode={this.changeMode} firstDate={firstDate} lastDate={lastDate}
                              changeFirstDateAndLastDate={this.changeFirstDateAndLastDate}/>
                 <CalendarBody events={events} selectDay={this.selectDay} selectedDay={selectedDay} today={today}
                               firstDate={firstDate} lastDate={lastDate}/>
@@ -43,13 +50,10 @@ class Calendar extends Component {
             </Fragment>
         );
     }
-
 }
 
 Calendar.propTypes = {
     events: PropTypes.instanceOf(Map),
-    mode: PropTypes.string.isRequired,
-    changeMode: PropTypes.func.isRequired,
 };
 
 export default Calendar;

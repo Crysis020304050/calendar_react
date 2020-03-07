@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './Date.module.scss';
 import moment from 'moment';
+import {calendarDatesFormats} from "../../constants";
 
 const EventItem = props => {
     const {event: {isIn, dateWithHours}, today} = props;
@@ -13,7 +14,7 @@ function Date(props) {
     const {selectedDay, events, today, date, firstDate, lastDate} = props;
 
     const renderEvents = () => {
-        const dayEvents = events?.get(date.clone().format('YYYY-MM-DD'));
+        const dayEvents = events?.get(date.clone().format(calendarDatesFormats.MAIN_CALENDAR_FORMAT));
         if (dayEvents) {
             return dayEvents.map((event, index) => {
                 if (index < 3) {
@@ -36,7 +37,7 @@ function Date(props) {
 
     return (
         <td onClick={onDateClick} className={dayContainerClasses}>
-            <h5 className={classNames({[styles.currentDay]: today.isSame(date, "date")})}>{date.clone().format('D')}</h5>
+            <h5 className={classNames({[styles.currentDay]: today.isSame(date, "date")})}>{date.clone().format(calendarDatesFormats.DAY)}</h5>
             <ul className={classNames(styles.eventList)}>
                 {renderEvents()}
             </ul>

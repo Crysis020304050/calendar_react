@@ -3,7 +3,7 @@ import styles from './App.module.scss';
 import {loadJson} from './utils/loadJson';
 import Calendar from "./components/Calendar";
 import moment from "moment";
-import {calendarModes} from "./constants";
+import {calendarDatesFormats} from "./constants";
 
 class App extends Component {
     constructor(props) {
@@ -12,7 +12,6 @@ class App extends Component {
             events: null,
             error: null,
             isFetching: false,
-            mode: calendarModes.MONTH,
         };
     }
 
@@ -31,7 +30,7 @@ class App extends Component {
             .then(datesAndEventsList => {
                 datesAndEventsList.forEach(dateAndEvents => {
                     const {date, events} = dateAndEvents;
-                    const formattedDate = moment(date).format('YYYY-MM-DD');
+                    const formattedDate = moment(date).format(calendarDatesFormats.MAIN_CALENDAR_FORMAT);
                     eventsMap.set(formattedDate, this.addNewFieldToEventsAndSortIt(formattedDate, events));
                 });
                 this.setState({
@@ -54,18 +53,12 @@ class App extends Component {
         this.loadEvents();
     }
 
-    changeMode = mode => {
-        this.setState({
-            mode: mode,
-        });
-    };
-
     render() {
-        const {isFetching, mode, events} = this.state;
+        const {isFetching, events} = this.state;
         return (
             <div className={styles.container}>
                 {
-                    !isFetching && <Calendar mode={mode} events={events} changeMode={this.changeMode}/>
+                    !isFetching && <Calendar events={events}/>
                 }
             </div>
         );

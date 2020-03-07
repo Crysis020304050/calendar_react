@@ -3,18 +3,19 @@ import moment from "moment";
 import PropTypes from 'prop-types';
 import {calendarModes} from "../../constants";
 import styles from './PrevOrNextCalendarButton.module.scss'
+import {calendarDatesFormats} from "../../constants";
 
 function PrevOrNextCalendarButton(props) {
     const {isNext, mode, firstDate, changeFirstDateAndLastDate} = props;
-    let buttonSign;
+    let buttonSign = '';
     if (isNext) {
         buttonSign = calendarModes.MONTH === mode ?
-            firstDate.clone().add(1, calendarModes.MONTH).format('MMM') :
+            firstDate.clone().add(1, calendarModes.MONTH).format(calendarDatesFormats.SHIRT_MONTH) :
             'next';
     }
     else {
         buttonSign = calendarModes.MONTH === mode ?
-            firstDate.clone().subtract(1, calendarModes.MONTH).format('MMM') :
+            firstDate.clone().subtract(1, calendarModes.MONTH).format(calendarDatesFormats.SHIRT_MONTH) :
             'prev';
     }
 

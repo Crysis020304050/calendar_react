@@ -5,16 +5,22 @@ import {mdiChevronDown} from "@mdi/js";
 import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
+import {calendarDatesFormats} from "../../constants";
 
 
 function CentralNavSign(props) {
     const {firstDate, lastDate, mode, isMenuOpen, toggleMenu} = props;
 
-    const sign = mode === calendarModes.MONTH ?
-        firstDate.clone().format('MMM') :
-        firstDate.month() === lastDate.month() ?
-        `${firstDate.clone().format('MMMM')} ${firstDate.clone().format('D')}-${lastDate.clone().format('D')}` :
-        `${firstDate.clone().format('MMM')} ${firstDate.clone().format('D')}-${lastDate.clone().format('MMM')} ${lastDate.clone().format('D')}`;
+    let sign = '';
+    if (mode === calendarModes.MONTH) {
+        sign = firstDate.clone().format(calendarDatesFormats.SHIRT_MONTH);
+    }
+    else if (firstDate.month() === lastDate.month()) {
+        sign = `${firstDate.clone().format(calendarDatesFormats.LONG_MONTH)} ${firstDate.clone().format(calendarDatesFormats.DAY)}-${lastDate.clone().format(calendarDatesFormats.DAY)}`;
+    }
+    else {
+        sign = `${firstDate.clone().format(calendarDatesFormats.SHIRT_MONTH)} ${firstDate.clone().format(calendarDatesFormats.DAY)}-${lastDate.clone().format(calendarDatesFormats.SHIRT_MONTH)} ${lastDate.clone().format(calendarDatesFormats.DAY)}`;
+    }
 
     return (
         <div className={styles.centralSign} onClick={toggleMenu}>

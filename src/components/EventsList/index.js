@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import moment from "moment";
 import EventsListItem from "../EventsListItem";
 import styles from './EventsList.module.scss';
+import {calendarDatesFormats} from "../../constants";
 
 function EventsList(props) {
     const renderEvents = () => {
@@ -11,7 +12,7 @@ function EventsList(props) {
         const startDay = selectedDay.clone();
 
         while (lastDate.isSameOrAfter(startDay, 'date')) {
-            const dayEvents = events?.get(startDay.clone().format('YYYY-MM-DD'));
+            const dayEvents = events?.get(startDay.clone().format(calendarDatesFormats.MAIN_CALENDAR_FORMAT));
             if (dayEvents) {
                 daysEvents.push({
                     day: startDay.clone(),
@@ -33,7 +34,6 @@ function EventsList(props) {
             }
         </ul>
     );
-
 }
 
 export default EventsList;
